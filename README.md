@@ -1,1 +1,1 @@
-# otusDatabases_1- Проектирование БД 
+# otusDatabases_1
