@@ -1,5 +1,5 @@
 # SQL Dumps and generated files
-*.sql
+
 *.sqlite
 *.dump
 *.bak
