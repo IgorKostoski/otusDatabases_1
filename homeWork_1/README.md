@@ -77,21 +77,23 @@ psql -h localhost -U postgres -d postgres -f schema.sql
 
 
 ## 🧾 Tables and Types
-Name | Description
-order_status | Enum for order tracking
-currency_code | Enum for supported currencies
-categories | Product categories
-manufacturers | Manufacturer info
-suppliers | Supplier contact and address
-products | Product catalog
-product_suppliers | Many-to-many linking products and suppliers
-prices | Historical pricing info
-stock | Product inventory levels
-customers | Customer profiles
-addresses | Delivery addresses
-couriers | Delivery personnel
-orders | Orders and statuses
-order_items | Line items per order
+| Name              | Description                                      |
+|-------------------|--------------------------------------------------|
+| order_status      | Enum for order tracking                         |
+| currency_code     | Enum for supported currencies                   |
+| categories        | Product categories                               |
+| manufacturers     | Manufacturer info                                |
+| suppliers         | Supplier contact and address                    |
+| products          | Product catalog                                  |
+| product_suppliers | Many-to-many linking products and suppliers     |
+| prices            | Historical pricing info                          |
+| stock             | Product inventory levels                         |
+| customers         | Customer profiles                                |
+| addresses         | Delivery addresses                               |
+| couriers          | Delivery personnel                               |
+| orders            | Orders and statuses                              |
+| order_items       | Line items per order                             |
+
 
 
 ## 💼 Business Use Case Examples
