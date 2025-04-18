@@ -126,3 +126,6 @@ UPDATE orders SET status = 'shipped' WHERE order_id = ?;
 SELECT SUM(total_value) 
 FROM orders 
 WHERE order_date BETWEEN ? AND ? status = 'delivered';
+
+## 📄 License
+This project is licensed under the MIT License.See LICENSE file for details.
