@@ -1,133 +1,126 @@
-# 📦 Delivery System Database (PostgreSQL)
+# Delivery System Database (PostgreSQL)
 
-This repository contains the schema definition for a delivery/order management system built with PostgreSQL. It includes support for customers, products, couriers, orders, pricing, stock, and delivery tracking.
+Этот репозиторий содержит схему для системы управления доставкой/заказами, построенную на PostgreSQL. Включает поддержку для клиентов, продуктов, курьеров, заказов, ценообразования, складов и отслеживания доставок.
 
----
+* * *
 
-## 📚 Contents
+## Содержание
 
-- [About](#-about)
-- [Schema Overview](#-schema-overview)
-- [Entity Relationship Diagram](#-entity-relationship-diagram)
-- [PostgreSQL Features Used](#-postgresql-features-used)
-- [Getting Started](#-getting-started)
-- [Tables and Types](#-tables-and-types)
-- [Business Use Case Examples](#-business-use-case-examples)
-- [License](#-license)
+  * Описание
+  * Обзор схемы
+  * Диаграмма сущностей и связей
+  * Используемые функции PostgreSQL
+  * Начало работы
+  * Таблицы и типы
+  * Примеры бизнес-использования
+  * Лицензия
 
----
+* * *
 
-## 📖 About
+## Описание
 
-This database schema is designed to support a scalable and normalized backend for an e-commerce or delivery-focused system. It manages:
+Эта схема базы данных предназначена для поддержки масштабируемой и нормализованной бэкенд-системы для электронной коммерции или системы доставки. Она управляет:
 
-- Product catalogs
-- Supplier and manufacturer data
-- Customer profiles and delivery addresses
-- Courier tracking
-- Orders and items
-- Inventory and pricing
+  * Каталогами продуктов
+  * Данными о поставщиках и производителях
+  * Профилями клиентов и адресами доставки
+  * Отслеживанием курьеров
+  * Заказами и товарами
+  * Инвентаризацией и ценами
 
----
+* * *
 
-## 🧠 Schema Overview
+## Обзор схемы
 
-The schema contains the following key modules:
+Схема содержит следующие ключевые модули:
 
-- **Products & Pricing**: Including suppliers, manufacturers, categories, and historical pricing
-- **Inventory**: Stock tracking per product
-- **Customers**: Profiles, addresses, and preferences
-- **Orders**: Order headers and item lines
-- **Delivery**: Courier management and delivery tracking
+  * Продукты и Цены: Включая поставщиков, производителей, категории и исторические цены
+  * Инвентаризация: Отслеживание запасов по продуктам
+  * Клиенты: Профили, адреса и предпочтения
+  * Заказы: Заголовки заказов и строки товаров
+  * Доставка: Управление курьерами и отслеживание доставок
 
----
+* * *
 
-## 🧭 Entity Relationship Diagram
+## Диаграмма сущностей и связей
 
-> You can regenerate this diagram using tools like [dbdiagram.io](https://dbdiagram.io), [SQLDBM](https://sqldbm.com), or [pgModeler](https://pgmodeler.io/).
+> Вы можете заново сгенерировать эту диаграмму с помощью таких инструментов как dbdiagram.io, SQLDBM или pgModeler.
 
-![Schema Diagram](docs/schema_diagram.pdf)
+* * *
 
----
+## Используемые функции PostgreSQL
 
-## 🛠 PostgreSQL Features Used
+Эта схема использует следующие особенности PostgreSQL:
 
-This schema leverages the following PostgreSQL-specific features:
+  * Типы `ENUM` для `order_status` и `currency_code`
+  * `SERIAL` для первичных ключей
+  * Ограничения `CHECK` (например, для количества на складе)
+  * Значения по умолчанию (`DEFAULT`), такие как временные метки и валюта
+  * Ограничения `UNIQUE` и `FOREIGN KEY` для обеспечения целостности данных
 
-- `ENUM` types for `order_status` and `currency_code`
-- `SERIAL` primary keys
-- `CHECK` constraints (e.g., stock quantities)
-- `DEFAULT` values (e.g., timestamps, currency)
-- `UNIQUE` and `FOREIGN KEY` constraints for data integrity
+* * *
 
----
+## ⚙️ Начало работы
 
-## ⚙️ Getting Started
+  1. Клонируйте репозиторий:
 
-1. **Clone this repo**:
-   ```bash
-   git clone https://github.com/your-username/delivery-system-db.git
-   cd delivery-system-db
+        git clone https://github.com/IgorKostoski/otusDatabases/tree/main/homeWork_1
 
-2. **Start PostgreSQL(e.g., via Docker)**:
-docker run --name delivery-db -e POSTGRES_PASSWORD=pass -p 5432:5432 -d postgres:14
+  2. Запустите PostgreSQL (например, через Docker): docker run --name delivery-db -e POSTGRES_PASSWORD=pass -p 5432:5432 -d postgres:14
 
-3. **Run schema**:
-psql -h localhost -U postgres -d postgres -f schema.sql
+  3. Запустите схему: psql -h localhost -U postgres -d postgres -f schema.sql
 
+## Таблицы и Типы
 
-## 🧾 Tables and Types
-| Name              | Description                                      |
-|-------------------|--------------------------------------------------|
-| order_status      | Enum for order tracking                         |
-| currency_code     | Enum for supported currencies                   |
-| categories        | Product categories                               |
-| manufacturers     | Manufacturer info                                |
-| suppliers         | Supplier contact and address                    |
-| products          | Product catalog                                  |
-| product_suppliers | Many-to-many linking products and suppliers     |
-| prices            | Historical pricing info                          |
-| stock             | Product inventory levels                         |
-| customers         | Customer profiles                                |
-| addresses         | Delivery addresses                               |
-| couriers          | Delivery personnel                               |
-| orders            | Orders and statuses                              |
-| order_items       | Line items per order                             |
+| Name               | Description                                      |
+|--------------------|--------------------------------------------------|
+| order_status       | Enum для отслеживания статуса заказов           |
+| currency_code      | Enum для поддерживаемых валют                   |
+| categories         | Категории продуктов                              |
+| manufacturers      | Информация о производителях                     |
+| suppliers          | Контакты и адреса поставщиков                   |
+| products           | Каталог продуктов                               |
+| product_suppliers  | Связь многие ко многим между продуктами и поставщиками |
+| prices             | Историческая информация о ценах                |
+| stock              | Уровни запасов продуктов                        |
+| customers          | Профили клиентов                                |
+| addresses          | Адреса доставки                                 |
+| couriers           | Курьеры                                          |
+| orders             | Заказы и их статусы                             |
+| order_items        | Товары в заказах                                |
 
+* * *
 
+## Примеры бизнес-использования
 
-## 💼 Business Use Case Examples
+### Обработка заказов
 
-## 🛒 Order Processing
-
---Place a new order
-INSERT INTO orders (...) VALUES (...);
+-- Размещение нового заказа  
+INSERT INTO orders (...) VALUES (...);  
 INSERT INTO order_items (...) VALUES (...);
 
---Check stock
+-- Проверка наличия товара  
 SELECT quantity FROM stock WHERE product_id = ?;
 
---Calculate total
+-- Расчет стоимости  
 SELECT price_value FROM prices WHERE product_id = ? AND start_date <= NOW() ORDER BY start_date DESC LIMIT 1;
 
-## 🚚 Delivery Management
+### Управление доставкой
 
---Orders ready for dispatch
+-- Заказы, готовые к отправке  
 SELECT * FROM orders WHERE status = 'processing';
 
---Asign a courier
+-- Назначение курьера  
 UPDATE orders SET courier_id = ?, status = 'assigned' WHERE order_id = ?;
 
---Track delivery progress
+-- Отслеживание доставки  
 UPDATE orders SET status = 'shipped' WHERE order_id = ?;
 
+### Отчеты и аналитика
 
-## 📊 Reporting & Analytics
+-- Общие продажи за период  
+SELECT SUM(total_value) FROM orders WHERE order_date BETWEEN ? AND ? AND status = 'delivered';
 
---Total sales for time range
-SELECT SUM(total_value) 
-FROM orders 
-WHERE order_date BETWEEN ? AND ? status = 'delivered';
+## Лицензия
 
-## 📄 License
-This project is licensed under the MIT License.See LICENSE file for details.
+Этот проект лицензирован под лицензией MIT. Подробности в файле LICENSE.
